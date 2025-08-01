@@ -1,0 +1,79 @@
+/* === DUOLINGO-INSPIRED BACKGROUND (GREEN & WHITE) === */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg,#00FFFF,#F0FFFF);
+    color: #333;
+}
+
+/* NAVIGATION BAR */
+nav {
+    background: #000000;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    text-decoration: none;
+    color: #800020;
+    font-weight: bold;
+}
+
+/* HERO SECTION (HOME) */
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: #333;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #666;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg,#00FFFF,#F0FFFF);
+    color: #333;
+}
+
+/* PAGE LINK BOXES */
+.page-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.link-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #800020;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.link-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #F0FFFF;
+    margin-top: 2rem;
+}

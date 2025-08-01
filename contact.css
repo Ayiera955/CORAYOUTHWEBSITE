@@ -1,0 +1,24 @@
+/* NAVIGATION BAR */
+nav {
+    background: #240e0c;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    text-decoration: none;
+    color: #800020;
+    font-weight: bold;
+}
+.contact-section-blue {
+    background: #1976d2;
+    color: #fff;
+    padding: 40px 0;
+}
+.contact-section-purple {
+    background: #77060b;
+    color: #fff;
+    padding: 40px 0;
+}
