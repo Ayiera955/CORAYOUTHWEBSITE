@@ -1,38 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to CITY OF REFUGE YOUTHS</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>City Of Refugee Assembly | A Christ-Centered Church</title>
+  <meta name="description" content="City Of Refugee Assembly — a Christ-centered church. Join us for worship, discipleship, and community impact." />
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --panel:#0b1226;       /* deep navy */
+      --muted:#94a3b8;       /* slate-400 */
+      --text:#e2e8f0;        /* slate-200 */
+      --brand:#eab308;       /* amber-500 */
+      --brand-2:#22d3ee;     /* cyan-400 */
+      --accent:#38bdf8;      /* sky-400 */
+      --card:#111827;        /* gray-900 */
+      --ring:#1f2937;        /* gray-800 */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif; background:linear-gradient(180deg,var(--bg),#0b1226 35%, #0a1222 100%); color:var(--text); line-height:1.6}
+    a{color:var(--brand-2); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1200px; margin-inline:auto; padding:0 1.25rem}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(12px);
+      background:rgba(8,13,26,.6); border-bottom:1px solid var(--ring)
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:0.75rem 0}
+    .brand{display:flex; gap:.75rem; align-items:center}
+    .logo{width:40px; height:40px; border-radius:10px; background:conic-gradient(from 210deg at 50% 50%, var(--brand), var(--brand-2), var(--accent), var(--brand)); box-shadow:0 8px 24px rgba(34,211,238,.25)}
+    .brand h1{font-size:1rem; margin:0; letter-spacing:.3px}
+    .nav a{padding:.5rem .75rem; border-radius:999px}
+    .nav a:hover{background:rgba(148,163,184,.1); text-decoration:none}
+    .btn{display:inline-block; padding:.8rem 1.1rem; border-radius:14px; background:linear-gradient(135deg,var(--brand),var(--accent)); color:#041014; font-weight:700; letter-spacing:.2px; box-shadow:0 8px 16px rgba(56,189,248,.25)}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 12px 22px rgba(56,189,248,.35)}
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--ring)}
+    .hero-inner{display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center; padding:5rem 0 4rem}
+    .headline{font-size:clamp(2rem, 4vw + 1rem, 3.5rem); line-height:1.1; margin:0 0 1rem; font-weight:800}
+    .sub{color:var(--muted); font-size:1.05rem; max-width:60ch}
+    .hero-card{background:radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.15), transparent 60%), linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.0)); border:1px solid var(--ring); padding:1.25rem; border-radius:18px}
+    .meta{display:flex; gap:1rem; flex-wrap:wrap; color:var(--muted); font-size:.95rem}
+
+    /* Sections */
+    section{padding:4rem 0; border-bottom:1px solid var(--ring)}
+    h2{font-size:clamp(1.5rem, 2vw + .6rem, 2.25rem); margin:0 0 1rem}
+    .kicker{color:var(--brand-2); text-transform:uppercase; letter-spacing:.2em; font-size:.8rem}
+
+    /* Cards grid */
+    .grid{display:grid; gap:1.25rem}
+    .grid-3{grid-template-columns:repeat(3, minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); border:1px solid var(--ring); padding:1.25rem; border-radius:18px}
+    .card h3{margin:.25rem 0 .25rem}
+    .muted{color:var(--muted)}
+
+    .badge{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .6rem; border:1px solid var(--ring); border-radius:999px; color:var(--muted); font-size:.8rem}
+    .list{padding-left:1rem; margin:.25rem 0}
+
+    /* Sermon list */
+    .sermon{display:flex; gap:1rem; align-items:flex-start; padding:1rem; border:1px dashed var(--ring); border-radius:16px}
+    .sermon .thumb{width:64px; height:64px; border-radius:12px; background:linear-gradient(135deg,var(--brand-2),var(--accent)); flex:0 0 64px}
+
+    /* CTA band */
+    .cta{background:radial-gradient(900px 400px at 20% -10%, rgba(234,179,8,.15), transparent 60%) , linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0)); border:1px solid var(--ring); padding:2rem; border-radius:20px; display:flex; align-items:center; justify-content:space-between; gap:1rem}
+
+    /* Footer */
+    footer{padding:2.5rem 0}
+    .foot{display:grid; grid-template-columns:2fr 1fr 1fr; gap:2rem; color:var(--muted)}
+    .copy{margin-top:1rem; font-size:.9rem; color:var(--muted)}
+
+    /* Forms */
+    input, textarea{width:100%; padding:.8rem 1rem; background:#0b1226; color:var(--text); border:1px solid var(--ring); border-radius:12px}
+    label{font-size:.9rem; color:var(--muted)}
+    form .row{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-inner{grid-template-columns:1fr; padding:3rem 0 2rem}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+      form .row{grid-template-columns:1fr}
+      .cta{flex-direction:column; align-items:flex-start}
+    }
+  </style>
 </head>
 <body>
-    <!-- NAVIGATION BAR -->
-    <nav>
-        <a href="index.html">HOME</a>
-        <a href="about.html"> CORA YOUTHS</a>
-        <a href="blog.html">SEMINARS AND EVENTS</a>
-        <a href="contact.html">CONTACT US</a>
-    </nav>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>City Of Refugee Assembly</h1>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#ministries">Ministries</a>
+        <a href="#sermons">Sermons</a>
+        <a href="#events">Events</a>
+        <a href="#locations">Locations</a>
+        <a href="#give" class="btn" style="padding:.55rem .9rem">Give</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO SECTION (HOME) -->
+  <main>
+    <!-- HERO -->
     <section class="hero">
-        <h1>CITY OF REFUGE ASSEMBLY YOUTHS😊</h1>
-        <p>Taking refuge in the Lord Jesus Christ🙏🙏</p>
-        <button id="cool-button">Psalms 91:1-2</button>
+      <div class="container hero-inner">
+        <div>
+          <p class="kicker">Welcome home</p>
+          <h2 class="headline">A church for the city, a refuge for the world.</h2>
+          <p class="sub">At <strong>City Of Refugee Assembly</strong>, we exist to glorify God by leading people to become fully devoted followers of Jesus Christ—gathering in worship, growing in discipleship, and going in service.</p>
+          <div style="margin:1.25rem 0; display:flex; gap:.75rem; flex-wrap:wrap">
+            <a href="#plan" class="btn">Plan Your Visit</a>
+            <a href="#sermons" class="badge">▶ Recent Sermons</a>
+            <span class="badge">Sundays • 9:00 & 11:30 AM</span>
+          </div>
+          <div class="meta">
+            <span>Family-friendly</span>·
+            <span>Contemporary worship</span>·
+            <span>Bible-centered teaching</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card" style="margin-bottom:1rem">
+            <div class="badge">This Week</div>
+            <h3 style="margin:.5rem 0 0">Message: <em>Anchored in Hope</em></h3>
+            <p class="muted">Join us this Sunday as we continue our series through Hebrews. Kids check-in opens 20 minutes before each service.</p>
+          </div>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3>Service Times</h3>
+              <p class="muted">Sundays 9:00 AM & 11:30 AM<br/>Midweek (Wed) 6:30 PM — Prayer & Word</p>
+            </div>
+            <div class="card">
+              <h3>Next Steps</h3>
+              <ul class="list muted">
+                <li>Discover CORA (membership)</li>
+                <li>Life Groups</li>
+                <li>Baptism & Child Dedication</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- LINK TO OTHER PAGES -->
-    <div class="page-links">
-        <a href="about.html" class="link-box">Cora Youths</a>
-        <a href="projects.html" class="link-box">Seminars and Events</a>
-        <a href="contact.html" class="link-box">Contact Us</a>
-    </div>
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Cityofrefugeassemblyyouths. All rights reserved.</p>
-    </footer>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <p class="kicker">Who we are</p>
+        <h2>Our Vision & Mission</h2>
+        <div class="grid grid-3" style="margin-top:1rem">
+          <div class="card">
+            <h3>Vision</h3>
+            <p class="muted">To be a Christ-centered refuge where people are restored, equipped, and released to impact the nations.</p>
+          </div>
+          <div class="card">
+            <h3>Mission</h3>
+            <p class="muted">We make disciples who know God, find freedom, discover purpose, and make a difference through worship, community, and mission.</p>
+          </div>
+          <div class="card">
+            <h3>Values</h3>
+            <ul class="list muted">
+              <li>Lordship of Christ</li>
+              <li>Authentic Community</li>
+              <li>Biblical Teaching</li>
+              <li>Excellence in Stewardship</li>
+              <li>Compassion for the Vulnerable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- MINISTRIES -->
+    <section id="ministries">
+      <div class="container">
+        <p class="kicker">Ministries</p>
+        <h2>There’s a place for you</h2>
+        <div class="grid grid-3" style="margin-top:1rem">
+          <div class="card">
+            <h3>Kids & Students</h3>
+            <p class="muted">Age-appropriate Bible teaching, worship, and fun activities. Safe check-in and vetted volunteers.</p>
+          </div>
+          <div class="card">
+            <h3>Life Groups</h3>
+            <p class="muted">Small groups meeting across the city for prayer, study, and care. Find your community.</p>
+          </div>
+          <div class="card">
+            <h3>Worship & Creative</h3>
+            <p class="muted">Join the team that leads our church in praise—music, production, photography, and more.</p>
+          </div>
+          <div class="card">
+            <h3>Outreach & Missions</h3>
+            <p class="muted">Serving our city through compassion initiatives and partnering to reach the nations.</p>
+          </div>
+          <div class="card">
+            <h3>Prayer</h3>
+            <p class="muted">Weekly prayer gatherings and a prayer line for urgent needs. We believe God answers prayer.</p>
+          </div>
+          <div class="card">
+            <h3>Care & Counseling</h3>
+            <p class="muted">Biblical counseling, pastoral care, and support through life’s transitions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERMONS -->
+    <section id="sermons">
+      <div class="container">
+        <p class="kicker">Teachings</p>
+        <h2>Latest Sermons</h2>
+        <div class="grid">
+          <article class="sermon">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <h3>Anchored in Hope — Hebrews 6</h3>
+              <p class="muted">Part 3 of the "Anchor" series • Pastor Jane Doe • Aug 17, 2025</p>
+              <p><a href="#">Watch</a> · <a href="#">Notes</a> · <a href="#">Audio</a></p>
+            </div>
+          </article>
+          <article class="sermon">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <h3>Faith That Moves — Mark 11</h3>
+              <p class="muted">Guest Speaker John Smith • Aug 10, 2025</p>
+              <p><a href="#">Watch</a> · <a href="#">Notes</a> · <a href="#">Audio</a></p>
+            </div>
+          </article>
+          <article class="sermon">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <h3>Grace for Today — Ephesians 2</h3>
+              <p class="muted">Lead Pastor Alex Mwangi • Aug 3, 2025</p>
+              <p><a href="#">Watch</a> · <a href="#">Notes</a> · <a href="#">Audio</a></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events">
+      <div class="container">
+        <p class="kicker">Calendar</p>
+        <h2>Upcoming Events</h2>
+        <div class="grid grid-3" style="margin-top:1rem">
+          <div class="card">
+            <h3>Serve Day</h3>
+            <p class="muted">City-wide outreach partnering with local schools and shelters. <strong>Sep 7, 2025</strong></p>
+            <p><a href="#">Register</a></p>
+          </div>
+          <div class="card">
+            <h3>New to CORA Lunch</h3>
+            <p class="muted">Meet pastors, hear our story, and discover next steps. <strong>Sep 14, 2025</strong></p>
+            <p><a href="#">RSVP</a></p>
+          </div>
+          <div class="card">
+            <h3>Worship Night</h3>
+            <p class="muted">An evening of praise and prayer for the city. <strong>Sep 28, 2025</strong></p>
+            <p><a href="#">Details</a></p>
+          </div>
+        </div>
+        <div class="cta" style="margin-top:1.25rem">
+          <div>
+            <h3 style="margin:.2rem 0 .4rem">Plan Your Visit</h3>
+            <p class="muted">We can’t wait to meet you. Let us know you’re coming and we’ll save you a seat.</p>
+          </div>
+          <a id="plan" href="#contact" class="btn">I’m New — Let’s Connect</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section id="locations">
+      <div class="container">
+        <p class="kicker">Our Church</p>
+        <h2>Locations & Service Info</h2>
+        <div class="grid grid-2" style="margin-top:1rem">
+          <div class="card">
+            <h3>Central Campus</h3>
+            <p class="muted">123 Refuge Way, City Center<br/>Sunday 9:00 AM & 11:30 AM</p>
+            <p><a href="#">Directions</a> · <a href="#">Parking</a></p>
+          </div>
+          <div class="card">
+            <h3>East Campus</h3>
+            <p class="muted">45 Hope Avenue, Eastside<br/>Sunday 10:00 AM</p>
+            <p><a href="#">Directions</a> · <a href="#">Parking</a></p>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:1rem">Online? Join our live stream Sundays at 11:30 AM.</p>
+      </div>
+    </section>
+
+    <!-- GIVING -->
+    <section id="give">
+      <div class="container">
+        <p class="kicker">Generosity</p>
+        <h2>Give Securely</h2>
+        <div class="grid grid-3" style="margin-top:1rem">
+          <div class="card">
+            <h3>Why We Give</h3>
+            <p class="muted">We give as an act of worship and a response to God’s grace, fueling ministry within our church and beyond.</p>
+          </div>
+          <div class="card">
+            <h3>Ways to Give</h3>
+            <ul class="list muted">
+              <li>Mobile Money / Bank Transfer</li>
+              <li>On-site during services</li>
+              <li>Mail: PO Box 123, City Center</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Give Online</h3>
+            <p class="muted">Use our secure giving portal to set up one-time or recurring gifts.</p>
+            <p><a href="#" class="btn">Go to Giving</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <p class="kicker">Get in touch</p>
+        <h2>Contact Us</h2>
+        <div class="grid grid-2" style="margin-top:1rem">
+          <div class="card">
+            <form>
+              <div class="row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" placeholder="Your full name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" />
+                </div>
+              </div>
+              <div style="margin-top:1rem">
+                <label for="msg">Message</label>
+                <textarea id="msg" name="message" rows="5" placeholder="How can we help?"></textarea>
+              </div>
+              <div style="margin-top:1rem">
+                <button class="btn" type="button">Send Message</button>
+              </div>
+            </form>
+          </div>
+          <div class="card">
+            <h3>Church Office</h3>
+            <p class="muted">Mon–Fri 9:00 AM – 4:30 PM<br/>Phone: +254 700 000 000<br/>Email: info@corachurch.org</p>
+            <h3 style="margin-top:1rem">Prayer Requests</h3>
+            <p class="muted">We’d be honored to pray with you. Submit a request or join our midweek prayer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="brand" style="margin-bottom:.5rem">
+          <div class="logo" aria-hidden="true"></div>
+          <strong>City Of Refugee Assembly</strong>
+        </div>
+        <p class="muted">© <span id="year"></span> City Of Refugee Assembly. All rights reserved.</p>
+        <p class="copy">Design inspiration credits: layout clarity inspired by <em>Simba Cement</em> corporate site; content structure inspired by leading Kenyan churches such as <em>CITAM</em> and <em>JCC</em>. This site is an original design and does not copy proprietary content or assets.</p>
+        <p class="copy">References: <a href="https://www.simbacement.co.ke/">Simba Cement</a> · <a href="https://citam.org/">CITAM</a> · <a href="https://www.jcckenya.net/">JCC</a></p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 .25rem">Quick Links</h4>
+        <p><a href="#about">About</a><br/><a href="#ministries">Ministries</a><br/><a href="#events">Events</a><br/><a href="#give">Give</a></p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 .25rem">Visit Us</h4>
+        <p class="muted">123 Refuge Way, City Center<br/>Sundays 9:00 & 11:30 AM</p>
+      </div>
+    </div>
+    <script>
+      /* Small progressive enhancement just to set the year; remove if you need strictly no JS */
+      (function(){var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
+    </script>
+  </footer>
 </body>
 </html>
